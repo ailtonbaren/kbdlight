@@ -1,0 +1,4 @@
+# kbdlight
+
+## Requirements
+- brightnessctl
