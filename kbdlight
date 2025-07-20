@@ -1,25 +1,26 @@
 #!/bin/bash
-max=$(brightnessctl -d "smc::kbd_backlight" m)
+mdl=$(brightnessctl -l | grep kbd | awk -F"'" '{print $2}')
+max=$(brightnessctl -d $mdl m)
 min=$(( $max - $max ))
 slee=0.08
 test=50
 
 while true; do
     while true; do
-        curr=$(brightnessctl -d "smc::kbd_backlight" g)
+        curr=$(brightnessctl -d $mdl g)
         if [ "$curr" -ge "$max" ]; then
             break
         fi
-        brightnessctl -d "smc::kbd_backlight" s +$test
+        brightnessctl -d $mdl s +$test
         sleep $slee
     done
 
     while true; do
-        curr=$(brightnessctl -d "smc::kbd_backlight" g)
+        curr=$(brightnessctl -d $mdl g)
         if [ "$curr" -le "$min" ]; then
             break
         fi
-        brightnessctl -d "smc::kbd_backlight" s 20-
+        brightnessctl -d $mdl s 20-
         sleep $slee
     done
 done
