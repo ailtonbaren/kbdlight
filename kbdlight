@@ -12,7 +12,7 @@ while true; do
             break
         fi
         brightnessctl -d $MDL s +$TEST
-        SLEEp $SLEE
+        sleep $SLEE
     done
 
     while true; do
@@ -21,6 +21,6 @@ while true; do
             break
         fi
         brightnessctl -d $MDL s 20-
-        SLEEp $SLEE
+        sleep $SLEE
     done
 done
