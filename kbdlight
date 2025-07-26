@@ -3,7 +3,8 @@ MDL=$(brightnessctl -l | grep kbd | awk -F"'" '{print $2}')
 MAX=$(brightnessctl -d $MDL m)
 MIN=0
 SLEE=0.08
-TEST=50
+LVL=50
+LVL1=20
 
 while true; do
     while true; do
@@ -11,7 +12,7 @@ while true; do
         if [ "$curr" -ge "$MAX" ]; then
             break
         fi
-        brightnessctl -d $MDL s +$TEST
+        brightnessctl -d $MDL s +$LVL
         sleep $SLEE
     done
 
@@ -20,7 +21,7 @@ while true; do
         if [ "$curr" -le "$MIN" ]; then
             break
         fi
-        brightnessctl -d $MDL s 20-
+        brightnessctl -d $MDL s $LVL1-
         sleep $SLEE
     done
 done
