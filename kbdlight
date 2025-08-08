@@ -1,27 +1,27 @@
 #!/bin/bash
-MDL=$(brightnessctl -l | grep kbd | awk -F"'" '{print $2}')
-MAX=$(brightnessctl -d $MDL m)
-MIN=0
-SLEE=0.08
-LVL=50
-LVL1=20
+mdl=$(brightnessctl -l | grep kbd | awk -F"'" '{print $2}')
+max=$(brightnessctl -d $mdl m)
+min=0
+slee=0.08
+lvl=50
+lvl1=20
 
 while true; do
     while true; do
-        curr=$(brightnessctl -d $MDL g)
-        if [ "$curr" -ge "$MAX" ]; then
+        curr=$(brightnessctl -d $mdl g)
+        if [ "$curr" -ge "$max" ]; then
             break
         fi
-        brightnessctl -d $MDL s +$LVL
-        sleep $SLEE
+        brightnessctl -d $mdl s +$lvl
+        sleep $slee
     done
 
     while true; do
-        curr=$(brightnessctl -d $MDL g)
-        if [ "$curr" -le "$MIN" ]; then
+        curr=$(brightnessctl -d $mdl g)
+        if [ "$curr" -le "$min" ]; then
             break
         fi
-        brightnessctl -d $MDL s $LVL1-
-        sleep $SLEE
+        brightnessctl -d $mdl s $lvl1-
+        sleep $slee
     done
 done
