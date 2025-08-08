@@ -1,2 +1,2 @@
 # kbdlight
-Simple Bash script using brightnessctl for backlight effects. 
+Simple Bash script using brightnessctl for backlight effects..
