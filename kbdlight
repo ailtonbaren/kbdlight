@@ -1,0 +1,15 @@
+#!/bin/bash
+DEVICE=$(brightnessctl) #test add depois(kbd::backlight, -l)
+DELAY=0.1
+
+while [ 1 ] ; do
+    while [ $(brightnessctl g) -gt 0 ]; do
+        brightnessctl s 20%-
+        sleep $DELAY
+    done
+
+    while [ $(brightnessctl g) -lt 64000 ]; do
+        brightnessctl s +20%
+        sleep $DELAY
+    done
+done
